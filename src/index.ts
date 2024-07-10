@@ -18,9 +18,10 @@ export default createRule<Options, MessageIds>({
       description: 'Ensure consistent function type usage',
     },
     messages: {
-      errorUsingArrowFunction: "Unexpected function type",
-      errorUsingVoidFunction: "Unexpected function type",
+      errorUsingArrowFunction: "Unexpected function type, should use VoidFunction",
+      errorUsingVoidFunction: "Unexpected function type, should use arrow function type",
     },
+    fixable: 'code',
     schema: [
       {
         type: 'object',
@@ -35,36 +36,34 @@ export default createRule<Options, MessageIds>({
     ],
   },
   defaultOptions: [{ default: 'ArrowFunction' }],
-  create(context) {
-    const preferredType = context.options[0];
-
+  create(context, [option]) {
     return {
-      TSTypeAnnotation(node) {
-        if (
-          node.typeAnnotation &&
-          node.typeAnnotation.type === 'TSVoidKeyword'
-        ) {
-          if (preferredType.default === 'ArrowFunction') {
+      TSTypeReference(node) {
+        if (node.typeName.type === AST_NODE_TYPES.Identifier && node.typeName.name === 'VoidFunction') {
+          if (option.default === 'ArrowFunction') {
             context.report({
               node,
               messageId: 'errorUsingVoidFunction',
               fix(fixer) {
-                const sourceCode = context.getSourceCode();
-                const typeAnnotation = sourceCode.getText(node.typeAnnotation);
                 return fixer.replaceText(node, `() => void`);
               },
             });
           }
         }
       },
-      TSTypeReference(node) {
-        if (node.typeName.type === AST_NODE_TYPES.Identifier && node.typeName.name === 'VoidFunction') {
-          if (preferredType.default === 'ArrowFunction') {
+      TSTypeAnnotation(node) {
+        if (
+          node.typeAnnotation &&
+          node.typeAnnotation.type === AST_NODE_TYPES.TSFunctionType
+        ) {
+          if (option.default === 'VoidFunction') {
             context.report({
               node,
-              messageId: 'errorUsingVoidFunction',
+              messageId: 'errorUsingArrowFunction',
               fix(fixer) {
-                return fixer.replaceText(node, `() => void`);
+                const sourceCode = context.getSourceCode();
+                const typeAnnotation = sourceCode.getText(node.typeAnnotation);
+                return fixer.replaceText(node.typeAnnotation, `VoidFunction`);
               },
             });
           }

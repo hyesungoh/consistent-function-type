@@ -10,15 +10,28 @@ ruleTester.run('consistent-function-type', rule, {
     {
       code: 'const foo: VoidFunction = () => {}',
       options: [{ default: 'VoidFunction' }]
+    },
+    {
+      code: 'const foo: () => void = () => {}',
+      options: [{ default: 'ArrowFunction' }]
     }
   ],
   invalid: [
+    {
+      code: 'const foo: () => void = () => {}',
+      options: [{ default: 'VoidFunction' }],
+      errors: [
+        { messageId: 'errorUsingArrowFunction' }
+      ],
+      output: 'const foo: VoidFunction = () => {}'
+    },
     {
       code: 'const foo: VoidFunction = () => {}',
       options: [{ default: 'ArrowFunction' }],
       errors: [
         { messageId: 'errorUsingVoidFunction' }
-      ]
+      ],
+      output: 'const foo: () => void = () => {}'
     }
   ]
 });
