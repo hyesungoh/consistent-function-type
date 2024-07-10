@@ -1,12 +1,7 @@
 module.exports = {
   root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:eslint-plugin/recommended',
-    'plugin:node/recommended',
-    'prettier',
-  ],
-  plugins: ['prettier'],
+  extends: ['eslint:recommended', 'plugin:eslint-plugin/recommended', 'prettier'],
+  plugins: ['prettier', 'consistent-function-type'],
   env: {
     node: true,
     es6: true,
@@ -14,7 +9,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
   },
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   overrides: [
     {
       files: ['*.test.js'],
