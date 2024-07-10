@@ -2006,7 +2006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-consistent-function-type@npm:0.0.0, eslint-plugin-consistent-function-type@workspace:.":
+"eslint-plugin-consistent-function-type@workspace:.":
   version: 0.0.0-use.local
   resolution: "eslint-plugin-consistent-function-type@workspace:."
   dependencies:
@@ -2018,7 +2018,6 @@ __metadata:
     "@typescript-eslint/utils": "npm:^8.0.0-alpha.41"
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-consistent-function-type: "npm:0.0.0"
     eslint-plugin-eslint-plugin: "npm:^6.2.0"
     eslint-plugin-jest: "npm:^28.6.0"
     eslint-plugin-prettier: "npm:^5.1.3"

@@ -2,6 +2,6 @@ import rule from './rule';
 
 export default {
   rules: {
-    default: rule,
+    'consistent-function-type': rule,
   },
 };

@@ -1,8 +1,11 @@
 {
   "name": "eslint-plugin-consistent-function-type",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "consistent use of function types",
   "author": "hyesungoh",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,7 +26,6 @@
     "@typescript-eslint/utils": "^8.0.0-alpha.41",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-consistent-function-type": "0.0.0",
     "eslint-plugin-eslint-plugin": "^6.2.0",
     "eslint-plugin-jest": "^28.6.0",
     "eslint-plugin-prettier": "^5.1.3",
