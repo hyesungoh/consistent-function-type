@@ -1,6 +1,9 @@
+// @ts-check
+/** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
-  moduleDirectories: ['node_modules'],
-  collectCoverageFrom: ['test/*.test.ts'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  testRegex: ['./tests/.+\\.test\\.ts$', './tests/.+\\.spec\\.ts$'],
   transform: {
     '^.+\\.(t|j)sx?$': [
       '@swc/jest',
