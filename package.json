@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-consistent-function-type",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "consistent use of function types",
   "author": "hyesungoh",
   "exports": {

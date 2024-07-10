@@ -8,6 +8,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'consistent-function-type/consistent-function-type': ['error', { default: 'ArrowFunction' }],
   },
   parser: '@typescript-eslint/parser',
   overrides: [
